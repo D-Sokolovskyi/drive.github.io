@@ -1,0 +1,17 @@
+@mixin font($fz: 1rem, $lh: 1.2rem, $ls: 0px) {
+  font-size: $fz;
+  line-height: $lh;
+  letter-spacing: $ls;
+}
+
+@mixin colorFolderCard($color: #61657e) {
+  background-color: $color;
+
+  .card-header__icon .fa-user-friends {
+    color: $color;
+  }
+
+  .card-members__item {
+    border-color: $color;
+  }
+}

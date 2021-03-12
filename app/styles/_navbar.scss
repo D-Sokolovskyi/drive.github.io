@@ -1,0 +1,107 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 240px;
+  background-color: $color-dark;
+
+  .navbar-logo {
+    display: block;
+    margin-top: 42px;
+
+    &__text {
+      margin-left: 22px;
+      @include font(26px, 24px);
+    }
+  }
+  .navbar-menu {
+    // margin-top: 78px;
+    align-self: stretch;
+
+    &__link {
+      display: block;
+      color: $navbar-font-color-default;
+      margin-bottom: 20px;
+      padding: 14px;
+      padding-left: 92px;
+      position: relative;
+      @include font(16px, 24px, 1px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background-color: transparent;
+        border-radius: 0 6px 6px 0;
+      }
+
+      .navbar-menu__icon {
+        color: $navbar-font-color-default;
+        @include font(24px, 24px);
+        position: absolute;
+        left: 42px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:hover {
+        color: $color-superlight;
+        font-weight: bold;
+
+        &::before {
+          background-color: $color-superlight;
+        }
+
+        .navbar-menu__icon {
+          color: $color-superlight;
+        }
+      }
+    }
+  }
+  .navbar-statistic {
+    margin-bottom: 26px;
+
+    &__header {
+      display: flex;
+      color: $color-superlight;
+      @include font(12px, 15px);
+
+      .navbar-statistic__title {
+        .navbar-statistic__icon {
+          margin-right: 8px;
+        }
+      }
+      .navbar-statistic__percent {
+        margin-left: auto;
+      }
+    }
+    &__progress {
+      margin-bottom: 6px;
+
+      ::-webkit-progress-bar {
+        display: inline-block;
+        background-color: $color-purple;
+        height: 6px;
+        border-radius: 4px;
+      }
+
+      ::-webkit-progress-value {
+        background-color: #f8b849;
+        border-radius: 4px;
+      }
+    }
+    &__footer {
+      @include font(12px, 15px);
+      color: $navbar-font-color-secondary;
+    }
+  }
+}

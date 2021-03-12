@@ -1,0 +1,277 @@
+.widgets {
+  background-color: $color-light;
+  flex: 0 0 418px;
+  padding: 25px 30px;
+  overflow-y: auto;
+
+  &-header {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &__icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      border-radius: 15px;
+      width: 50px;
+      height: 50px;
+      margin-right: 8px;
+      font-size: 24px;
+    }
+
+    &__questionmark span {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 1px solid;
+      border-radius: 50%;
+      text-align: center;
+      @include font(15px, 24px);
+    }
+
+    &__user {
+      display: flex;
+
+      .widgets-header__avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          -o-object-fit: cover;
+          object-fit: cover;
+          -o-object-position: center;
+          object-position: center;
+        }
+      }
+
+      .widgets-header__button {
+        background-color: transparent;
+        border: none;
+        border-radius: 9px;
+        @include font(16px, 24px, 0.7);
+
+        & > * {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  &-calendar {
+    background-color: $color-white;
+    padding: 18px 24px;
+    border-radius: 16px;
+
+    .section-header__button {
+      background-color: transparent;
+    }
+
+    &__period {
+      display: flex;
+      background-color: $color-purple-superlight;
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    &__trigger {
+      display: none;
+
+      &:checked + .widgets-calendar__label {
+        background-color: $color-purple;
+        color: $color-white;
+      }
+    }
+
+    &__label {
+      display: block;
+      flex: 1 1 calc(100% / 3);
+      text-align: center;
+      padding: 8px 0;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    &__switcher {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+
+      .widgets-calendar__dir {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid $color-grey-light;
+        font-size: 10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+      }
+
+      .widgets-calendar__title {
+        @include font(14px, 18px);
+      }
+    }
+
+    &__content {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(7, 30px);
+      grid-template-rows: repeat(6, 30px);
+      grid-gap: 5px;
+      justify-items: stretch;
+      align-items: stretch;
+      justify-content: space-between;
+      align-content: space-between;
+
+      .widgets-calendar__item {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        border-radius: 9px;
+        @include font(12px, 15px);
+
+        &:hover,
+        &:focus {
+          box-shadow: 0 0 2px $color-grey-light;
+        }
+
+        &--past {
+          color: $color-text-disabled;
+          cursor: not-allowed;
+
+          &:hover {
+            box-shadow: none;
+          }
+        }
+
+        &--current {
+          background-color: $color-purple;
+          color: $color-white;
+        }
+
+        &--event {
+          &::after {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 6px;
+            border: 1px solid $color-white;
+            background-color: $color-red;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            transform: translateY(50%);
+          }
+        }
+      }
+    }
+  }
+
+  &-task {
+    .task-item {
+      padding: 15px 25px;
+      background-color: $color-white;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .task-item__title {
+          @include font(14px, 20px);
+        }
+
+        .task-item__button {
+          background-color: transparent;
+          border: none;
+          font-size: 14px;
+        }
+      }
+
+      &__date {
+        margin-top: 10px;
+        color: $color-text-lighter;
+        @include font(12px, 14px);
+      }
+
+      &__users {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+
+        .task-users__item {
+          width: 22px;
+          height: 22px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          border: 1px solid $color-grey-dark;
+          overflow: hidden;
+          position: relative;
+
+          &:last-of-type {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: $color-dark;
+            text-align: center;
+            color: $color-white;
+            @include font(6px, 22px);
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            -o-object-position: center;
+            object-position: center;
+          }
+        }
+
+        @for $i from 2 through 4 {
+          .task-users__item:nth-child(#{$i}) {
+            right: ($i - 1) * 5px;
+          }
+        }
+      }
+
+      &--review {
+        &::before {
+          content: "";
+          display: block;
+          width: 10px;
+          background-color: $color-red;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &-chart {
+    &__item {
+      background-color: $color-white;
+      border-radius: 16px;
+      padding: 15px 24px;
+    }
+  }
+}
